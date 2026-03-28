@@ -2,7 +2,7 @@
 
 YT Popup Player is a neat browser extension that adds a "play-in-popup" button to YouTube thumbnails. It allows you to watch videos in a floating popup overlay or a customizable miniplayer without ever leaving your current page.
 
-GitHub: https://github.com/kuronekony4n/ytpop
+GitHub: [https://github.com/kuronekony4n/ytpop](https://github.com/kuronekony4n/ytpop)
 
 ## Features
 
