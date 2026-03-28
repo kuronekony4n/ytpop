@@ -417,7 +417,7 @@ function createPlayButton(thumbnailElement, isShorts = false) {
  */
 function openPopup(videoId) {
   // Change this to your hosted embed page URL
-  const EMBED_HOST = 'http://127.0.0.1:5500/public/index.html'
+  const EMBED_HOST = 'https://kuronekony4n.github.io/ytpop/popup/'
   const url = `${EMBED_HOST}?v=${videoId}`
 
   if (popupSettings.popupMode === 'window') {
