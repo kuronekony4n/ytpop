@@ -20,8 +20,6 @@ GitHub: https://github.com/kuronekony4n/ytpop
 
 ## Installation
 
-*(Once published to the Chrome Web Store, add the link here.)*
-
 To install the extension manually for development or testing:
 
 1. Download or clone this repository.
