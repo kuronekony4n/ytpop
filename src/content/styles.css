@@ -1,0 +1,233 @@
+/* ===========================
+   Ensure ytd-thumbnail is a positioning context
+   =========================== */
+
+ytd-thumbnail {
+  position: relative !important;
+}
+
+/* ===========================
+   Play Button Wrapper (Shadow DOM Host)
+   =========================== */
+
+.ytpop-shadow-wrapper {
+  opacity: 0 !important;
+  transition: opacity 0.2s ease, transform 0.15s ease !important;
+  transform: scale(0.85) !important;
+}
+
+/* Show on thumbnail hover */
+ytd-thumbnail:hover > .ytpop-shadow-wrapper {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+/* ===========================
+   Popup Overlay
+   =========================== */
+
+.ytpop-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.25s ease;
+  pointer-events: none;
+}
+
+.ytpop-overlay--visible {
+  background: rgba(0, 0, 0, 0.85);
+  pointer-events: all;
+}
+
+/* ===========================
+   Popup Container
+   =========================== */
+
+.ytpop-container {
+  position: relative;
+  width: 90vw;
+  max-width: var(--ytpop-popup-width, 900px);
+  border-radius: 12px;
+  overflow: visible;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 24px 80px rgba(0, 0, 0, 0.6);
+  background: #0f0f0f;
+  opacity: 0;
+  transform: scale(0.92) translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ytpop-overlay--visible .ytpop-container {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ===========================
+   Responsive iframe (16:9)
+   =========================== */
+
+.ytpop-iframe-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;  /* 16:9 aspect ratio */
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ytpop-iframe-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ===========================
+   Close Button
+   =========================== */
+
+.ytpop-close-btn {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.15s ease;
+  line-height: 1;
+}
+
+.ytpop-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.ytpop-close-btn:active {
+  transform: scale(0.95);
+}
+
+/* ===========================
+   Miniplayer buttons
+   =========================== */
+
+.ytpop-ctrl-btn {
+  position: absolute;
+  top: -40px;
+  z-index: 10;
+  height: 32px;
+  max-width: 32px;
+  padding: 0 9px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  background: transparent;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ytpop-ctrl-btn:hover {
+  max-width: 140px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.ytpop-ctrl-btn svg {
+  flex-shrink: 0;
+}
+
+.ytpop-btn-text {
+  opacity: 0;
+  white-space: nowrap;
+  margin-left: 0;
+  transition: opacity 0.2s ease 0.1s, margin 0.3s ease;
+}
+
+.ytpop-ctrl-btn:hover .ytpop-btn-text {
+  opacity: 1;
+  margin-left: 6px;
+}
+
+.ytpop-ctrl-btn:active {
+  transform: scale(0.95);
+}
+
+.ytpop-mini-btn { right: 40px; }
+.ytpop-max-btn { right: 40px; display: none; }
+
+.ytpop-overlay--miniplayer .ytpop-mini-btn { display: none; }
+.ytpop-overlay--miniplayer .ytpop-max-btn { display: flex; }
+
+.ytpop-overlay--miniplayer .ytpop-close-btn { right: 0; top: -40px; }
+
+/* ===========================
+   Modifiers
+   =========================== */
+
+.ytpop-overlay--blur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ytpop-overlay--miniplayer {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  pointer-events: none;
+}
+
+.ytpop-overlay--miniplayer .ytpop-container {
+  position: fixed;
+  top: var(--ytpop-mini-top, auto);
+  bottom: var(--ytpop-mini-bottom, 24px);
+  left: var(--ytpop-mini-left, auto);
+  right: var(--ytpop-mini-right, 24px);
+  width: var(--ytpop-mini-width, 400px);
+  max-width: calc(100vw - 48px);
+  transform: none;
+  pointer-events: auto;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  z-index: 2147483647;
+}
+
+.ytpop-overlay--miniplayer .ytpop-ctrl-btn,
+.ytpop-overlay--miniplayer .ytpop-close-btn {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.ytpop-overlay--miniplayer .ytpop-ctrl-btn:hover,
+.ytpop-overlay--miniplayer .ytpop-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.ytpop-close-btn:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "chromium:manifest_version": 3,
+  "firefox:manifest_version": 2,
+  "version": "1.0.0",
+  "name": "YT Popup Player",
+  "description": "Adds a play-in-popup button on YouTube thumbnails. Click to watch videos in an overlay without leaving the page.",
+  "icons": {
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "64": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "YT Popup Options"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "content/scripts.js"
+      ]
+    }
+  ],
+  "author": "Your Name"
+}
